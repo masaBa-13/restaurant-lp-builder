@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ChevronRight, Clock, Sparkles, Smartphone } from 'lucide-react';
+import { ChevronRight, Sparkles, Layers } from 'lucide-react';
 
 const features = [
   {
@@ -29,12 +29,21 @@ export default function HomePage() {
             <span className="text-2xl">🍽️</span>
             <span className="font-bold text-gray-800 text-lg">飲食店LP Builder</span>
           </div>
-          <Link
-            href="/create"
-            className="px-5 py-2 bg-orange-500 text-white rounded-full font-semibold text-sm hover:bg-orange-600 transition shadow"
-          >
-            無料で作成
-          </Link>
+          <div className="flex items-center gap-3">
+            <Link
+              href="/builder"
+              className="flex items-center gap-1.5 px-5 py-2 bg-purple-600 text-white rounded-full font-semibold text-sm hover:bg-purple-700 transition shadow"
+            >
+              <Layers size={14} />
+              ビジュアルビルダー
+            </Link>
+            <Link
+              href="/builder"
+              className="px-5 py-2 bg-orange-500 text-white rounded-full font-semibold text-sm hover:bg-orange-600 transition shadow"
+            >
+              無料で作成
+            </Link>
+          </div>
         </div>
       </header>
 
@@ -54,13 +63,22 @@ export default function HomePage() {
             お店の情報を入力するだけ。AIが魅力的なコピーを自動生成し、
             プロ品質のランディングページを作ります。
           </p>
-          <Link
-            href="/create"
-            className="inline-flex items-center gap-2 px-10 py-4 bg-orange-500 text-white rounded-full font-bold text-xl hover:bg-orange-600 transition shadow-xl"
-          >
-            今すぐ無料で作成
-            <ChevronRight size={20} />
-          </Link>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Link
+              href="/builder"
+              className="inline-flex items-center gap-2 px-10 py-4 bg-orange-500 text-white rounded-full font-bold text-xl hover:bg-orange-600 transition shadow-xl"
+            >
+              今すぐ無料で作成
+              <ChevronRight size={20} />
+            </Link>
+            <Link
+              href="/builder"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-purple-600 text-white rounded-full font-bold text-lg hover:bg-purple-700 transition shadow-lg"
+            >
+              <Layers size={18} />
+              ビジュアルビルダーを試す
+            </Link>
+          </div>
           <p className="mt-4 text-sm text-gray-400">クレジットカード不要・登録不要</p>
         </div>
       </section>
@@ -108,7 +126,7 @@ export default function HomePage() {
         <h2 className="text-3xl font-bold mb-4">今すぐLPを作成しましょう</h2>
         <p className="text-lg opacity-80 mb-8">無料・登録不要・10分で完成</p>
         <Link
-          href="/create"
+          href="/builder"
           className="inline-flex items-center gap-2 px-10 py-4 bg-white text-orange-600 rounded-full font-bold text-xl hover:shadow-xl transition"
         >
           無料でLPを作成する

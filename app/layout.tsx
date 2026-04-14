@@ -19,6 +19,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja" className={`${geist.variable} h-full antialiased`}>
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@400;700&family=M+PLUS+Rounded+1c:wght@400;700&family=Sawarabi+Mincho&family=Sawarabi+Gothic&family=Shippori+Mincho:wght@400;700&family=Zen+Kaku+Gothic+New:wght@400;700&family=Zen+Old+Mincho&family=Yuji+Syuku&family=Dela+Gothic+One&display=swap"
+          rel="stylesheet"
+        />
+      </head>
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );
