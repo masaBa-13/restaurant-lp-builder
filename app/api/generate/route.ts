@@ -1,34 +1,25 @@
-import Anthropic from '@anthropic-ai/sdk';
+import { GoogleGenerativeAI } from '@google/generative-ai';
 import { NextRequest, NextResponse } from 'next/server';
 import { SYSTEM_PROMPT, buildPrompt } from '@/app/lib/prompts';
 import { RestaurantData, GeneratedLPContent } from '@/app/lib/types';
 
-const client = new Anthropic({
-  apiKey: process.env.ANTHROPIC_API_KEY,
-});
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
 
 export async function POST(request: NextRequest) {
   try {
     const data: RestaurantData = await request.json();
 
-    const message = await client.messages.create({
-      model: 'claude-haiku-4-5-20251001',
-      max_tokens: 1024,
-      system: SYSTEM_PROMPT,
-      messages: [
-        {
-          role: 'user',
-          content: buildPrompt(data),
-        },
-      ],
+    const model = genAI.getGenerativeModel({
+      model: 'gemini-2.5-flash',
+      systemInstruction: SYSTEM_PROMPT,
     });
 
-    const text = message.content[0].type === 'text' ? message.content[0].text : '';
+    const result = await model.generateContent(buildPrompt(data));
+    const text = result.response.text();
 
-    // Extract JSON from the response
     const jsonMatch = text.match(/\{[\s\S]*\}/);
     if (!jsonMatch) {
-      throw new Error('Invalid JSON response from Claude');
+      throw new Error('Invalid JSON response from Gemini');
     }
 
     const content: GeneratedLPContent = JSON.parse(jsonMatch[0]);
